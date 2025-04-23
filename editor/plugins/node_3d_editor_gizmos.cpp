@@ -76,6 +76,15 @@ void EditorNode3DGizmo::clear() {
 }
 
 void EditorNode3DGizmo::redraw() {
+	static int gizmo_count;
+	gizmo_count++;
+	PackedVector3Array lines;
+	Ref<Material> material = get_material("main",this);
+	if (gizmo_count > 20) {
+		lines.push_back(Vector3(0, 0, 0));
+		lines.push_back(Vector3(0, 1, 0));
+		this->add_lines(lines,material, false);
+	}
 	if (!GDVIRTUAL_CALL(_redraw)) {
 		ERR_FAIL_NULL(gizmo_plugin);
 		gizmo_plugin->redraw(this);
@@ -248,6 +257,8 @@ void EditorNode3DGizmo::add_mesh(const Ref<Mesh> &p_mesh, const Ref<Material> &p
 
 void EditorNode3DGizmo::_update_bvh() {
 	ERR_FAIL_NULL(spatial_node);
+	static int gizmo_count;
+	gizmo_count++;
 
 	Transform3D transform = spatial_node->get_global_transform();
 

@@ -100,4 +100,9 @@ TEST_CASE("[Test_StyleBoxFlat] Getters and setters") {
 }
 TEST_CASE("[Test_StyleBoxFlat] Corner_height") {
 }
+TEST_CASE("[Test_StyleBoxFlat] get_draw_rect") {
+
+}
+TEST_CASE("[Test_StyleBoxFlat] draw") {
+}
 } // namespace TestStyleBoxFlat
